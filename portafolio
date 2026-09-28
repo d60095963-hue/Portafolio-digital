@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UPLA · Portafolio Digital Académico</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0F17;--card:#111827;--bd:#1F2937;--ac:#00E5FF;--ac2:#14B8A6;--tx:#F9FAFB;--tx2:#9CA3AF;--in:#0A0D14;--dg:#371B1E;--dgt:#FF4D4D}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 80% 10%,#0c2a2e 0,var(--bg) 45%);color:var(--tx);min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.hide{display:none!important}
+.row{display:flex;gap:12px;align-items:center}
+.btn{background:linear-gradient(90deg,#06B6D4,var(--ac2));color:#04121a;font-weight:700;padding:11px 18px;border-radius:12px}
+.btn:hover{box-shadow:0 0 18px #00e5ff55}
+.btn.ghost{background:transparent;color:var(--tx2);border:1px solid var(--bd)}
+.btn.sm{padding:6px 12px;font-size:13px;border-radius:9px}
+.btn.danger,.dg{background:var(--dg);color:var(--dgt);border:1px solid var(--dgt);font-weight:600}
+.inp{width:100%;background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:11px 14px;margin-top:6px}
+.inp:focus{border-color:var(--ac);box-shadow:0 0 0 3px #00e5ff22;outline:0}
+label{font-size:13px;font-weight:600;display:block;margin-top:14px;color:#e5e7eb}
+.cap{color:var(--tx2);font-size:13px}
+/* auth */
+#auth{display:grid;place-items:center;min-height:100vh;padding:20px}
+.box{width:100%;max-width:440px;background:var(--card);border:1px solid #14b8a655;border-top:3px solid var(--ac);border-radius:22px;padding:32px;box-shadow:0 0 40px #00e5ff18}
+.center{text-align:center}
+.logo{width:76px;height:76px;border-radius:50%;border:2px solid var(--ac);display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 0 18px #00e5ff66;background:#0a1a20;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:contain}
+.tabs{display:flex;margin:20px 0 4px;border-bottom:1px solid var(--bd)}
+.tabs button{flex:1;background:0;padding:12px;color:var(--tx2);font-weight:600;border-bottom:2px solid transparent}
+.tabs button.on{color:var(--ac);border-color:var(--ac)}
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 28px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.hl{width:46px;height:46px;border-radius:12px;border:2px solid var(--ac);box-shadow:0 0 12px #00e5ff55;display:grid;place-items:center;overflow:hidden;background:#0a1a20}
+.hl img{width:100%;height:100%;object-fit:contain}
+.badge{font-size:12px;color:var(--ac);border:1px solid #00e5ff66;background:#00e5ff14;padding:2px 9px;border-radius:6px;font-weight:600}
+.av{width:40px;height:40px;border-radius:50%;border:2px solid var(--ac);box-shadow:0 0 10px #00e5ffaa;object-fit:cover;display:grid;place-items:center;background:#0a1a20;color:var(--ac);font-weight:800;font-size:14px;flex:none}
+.usr{text-align:right;line-height:1.35}
+.usr small{color:var(--ac2);font-size:12px}
+main{max-width:1180px;margin:0 auto;padding:26px 28px 60px}
+.hero{border:1px solid #14b8a688;border-radius:22px;padding:28px;background:#0b111a;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 0 30px #00e5ff14}
+.hero h1{font-size:32px;letter-spacing:-.5px;margin:8px 0}
+.subs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:26px 0}
+.sub{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;text-align:left;width:100%}
+.sub.on{border-color:var(--ac2);border-left:4px solid var(--ac);box-shadow:0 0 18px #00e5ff22}
+.ic{width:54px;height:54px;border-radius:12px;background:#0a1a20;display:grid;place-items:center;font-size:24px}
+.cnt{margin-left:auto;border:1px solid var(--ac2);color:var(--ac);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;font-size:12px;font-weight:700}
+.units{display:flex;gap:6px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:6px;overflow-x:auto}
+.units button{flex:1;min-width:90px;background:0;color:var(--tx2);padding:12px;border-radius:10px;font-weight:600}
+.units button.on{background:#0d3a45;color:var(--tx);border:1px solid var(--ac2);box-shadow:0 0 12px #00e5ff33}
+.weeks{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{background:var(--card);border:1px solid var(--bd);color:var(--tx2);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600}
+.chip.on{color:var(--ac);border-color:var(--ac);box-shadow:0 0 10px #00e5ff33}
+.wtools{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.list{display:grid;gap:14px;margin-top:22px}
+.ev{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px}
+.ev h3{font-size:17px;margin:8px 0 4px}
+.tag{font-size:12px;padding:3px 10px;border-radius:999px;background:#0d3a45;color:var(--ac);margin-right:6px;font-weight:600}
+pre{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-top:10px;overflow:auto;font-size:13px;max-height:180px}
+.empty{border:1px dashed var(--bd);border-radius:22px;padding:56px 20px;text-align:center;margin-top:22px}
+.empty .ic{margin:0 auto 14px;border-radius:50%;width:74px;height:74px;font-size:32px}
+/* modal */
+#modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:16px;z-index:10;overflow:auto}
+.mb{background:var(--card);border:1px solid #14b8a688;border-radius:20px;padding:26px;width:100%;max-width:560px;box-shadow:0 0 40px #00e5ff22;max-height:94vh;overflow:auto}
+.mb h2{font-size:20px;margin-bottom:6px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.acts{display:flex;justify-content:flex-end;gap:10px;margin-top:22px;border-top:1px solid var(--bd);padding-top:16px}
+#toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--ac);color:var(--tx);padding:12px 18px;border-radius:12px;box-shadow:0 0 18px #00e5ff44;z-index:20}
+#pv{width:200px;height:200px;border-radius:50%;border:2px solid var(--ac);box-shadow:0 0 16px #00e5ff77;display:block;margin:12px auto;background:#0a1a20}
+input[type=range]{width:100%;accent-color:var(--ac)}
+@media(max-width:640px){.g2{grid-template-columns:1fr}header,main{padding-left:16px;padding-right:16px}.usr{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="auth" class="hide">
+  <div class="box">
+    <div class="center">
+      <div class="logo" data-logo></div>
+      <h1 style="font-size:24px;line-height:1.1">UNIVERSIDAD PERUANA</h1>
+      <div style="color:#06B6D4;font-weight:800;letter-spacing:2px;font-size:20px;margin-top:4px">LOS ANDES</div>
+      <div class="cap" style="margin-top:6px">Portafolio Digital Académico</div>
+    </div>
+    <div class="tabs"><button id="tl" class="on">Iniciar sesión</button><button id="tr">Registrarse</button></div>
+    <div id="fl">
+      <label>Nombre o código universitario</label><input class="inp" id="lu" placeholder="Ej: U12345678 o tu nombre" autocomplete="username">
+      <label>Contraseña</label><input class="inp" id="lp" type="password" autocomplete="current-password">
+      <button class="btn" id="bl" style="width:100%;margin-top:20px">Ingresar al portafolio</button>
+    </div>
+    <div id="fr" class="hide">
+      <label>Nombre completo</label><input class="inp" id="rn" placeholder="Ej: Juan Pérez">
+      <div class="g2"><div><label>Código estudiante</label><input class="inp" id="rc" placeholder="Ej: 74839201"></div>
+      <div><label>Ciclo académico</label><select class="inp" id="ry"></select></div></div>
+      <label>Carrera universitaria</label><input class="inp" id="rk" placeholder="Ej: Ingeniería de Sistemas y Computación">
+      <label>Contraseña</label><input class="inp" id="rp" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      <button class="btn" id="br" style="width:100%;margin-top:20px">Crear cuenta Mi UPLA</button>
+    </div>
+    <p id="ae" class="cap" style="color:var(--dgt);margin-top:12px;min-height:18px"></p>
+  </div>
+</div>
+
+<div id="app" class="hide">
+  <header>
+    <div class="row">
+      <div class="hl" data-logo></div>
+      <div><div class="row" style="gap:8px"><b style="font-size:20px">UPLA</b><span class="badge">Portafolio</span></div><div class="cap" style="color:#d1d5db">Universidad Peruana Los Andes</div></div>
+    </div>
+    <div class="row">
+      <div id="hav"></div>
+      <div class="usr"><b id="hn"></b><br><small id="hb"></small></div>
+      <button class="btn ghost sm" id="ep">Editar perfil</button>
+      <button class="btn dg sm" id="lo" style="padding:9px 16px;border-radius:12px">Salir</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div><span class="badge">Semestre académico activo</span><h1>Portafolio de trabajos y evidencias</h1>
+      <p class="cap" style="max-width:560px">Organiza tus actividades por asignatura, unidad y semana. Todo queda guardado en tu cuenta.</p></div>
+      <button class="btn" id="up" style="padding:16px 26px">+ Subir trabajo</button>
+    </section>
+    <div class="subs" id="subs"></div>
+    <div class="units" id="units"></div>
+    <div id="wk"></div>
+    <div id="ev"></div>
+  </main>
+</div>
+<div id="modal" class="hide"></div>
+<div id="toast" class="hide"></div>
+
+<script>
+'use strict';
+// ====== Capa de datos (localStorage). Para producción: reemplazar por API REST + JWT ======
+const K='upla_portfolio_v2';
+const CYC=['I','II','III','IV','V','VI','VII','VIII','IX','X'].map(c=>c+' Ciclo');
+const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+let db;
+try{db=JSON.parse(localStorage.getItem(K))}catch(e){}
+db=db||{users:[],subjects:[],weeks:[],evidences:[],session:null,logo:null};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(db));return true}catch(e){toast('Almacenamiento lleno: usa un archivo más pequeño o un enlace');return false}};
+const hash=async p=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('upla:'+p)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+const me=()=>db.users.find(u=>u.id===db.session);
+let st={sub:null,unit:'all',week:'all'};
+
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('hide');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.add('hide'),3000)}
+function modal(html){const m=$('#modal');m.innerHTML='<div class="mb">'+html+'</div>';m.classList.remove('hide');m.onclick=e=>{if(e.target===m)closeM()}}
+function closeM(){$('#modal').classList.add('hide');$('#modal').innerHTML=''}
+const opts=(a,sel)=>a.map(([v,l])=>`<option value="${esc(v)}"${String(v)===String(sel)?' selected':''}>${esc(l)}</option>`).join('');
+const initials=n=>n.split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+const avatar=(u,s)=>u.photo?`<img class="av" src="${u.photo}" alt="Foto de perfil">`:`<div class="av">${esc(initials(u.name))}</div>`;
+
+// logo institucional (reemplazable desde Editar perfil)
+const DEF_LOGO='<svg width="60%" viewBox="0 0 64 64" fill="none" stroke="#00E5FF" stroke-width="3" stroke-linejoin="round"><path d="M32 12 4 26l28 14 28-14z"/><path d="M14 33v12c0 4 8 8 18 8s18-4 18-8V33"/><path d="M60 26v16"/></svg>';
+function paintLogo(){document.querySelectorAll('[data-logo]').forEach(e=>e.innerHTML=db.logo?`<img src="${db.logo}" alt="Logo UPLA">`:DEF_LOGO)}
+
+// ====== Autenticación ======
+$('#ry').innerHTML=opts(CYC.map(c=>[c,c]),'V Ciclo');
+$('#tl').onclick=()=>authTab(true);$('#tr').onclick=()=>authTab(false);
+function authTab(l){$('#tl').classList.toggle('on',l);$('#tr').classList.toggle('on',!l);$('#fl').classList.toggle('hide',!l);$('#fr').classList.toggle('hide',l);$('#ae').textContent=''}
+$('#br').onclick=async()=>{
+  const n=$('#rn').value.trim(),c=$('#rc').value.trim().toUpperCase(),k=$('#rk').value.trim(),p=$('#rp').value;
+  if(!n||!c||!k)return $('#ae').textContent='Completa nombre, código y carrera.';
+  if(p.length<6)return $('#ae').textContent='La contraseña debe tener al menos 6 caracteres.';
+  if(db.users.some(u=>u.code===c))return $('#ae').textContent='Ese código ya está registrado. Inicia sesión.';
+  const u={id:uid(),code:c,name:n,career:k,cycle:$('#ry').value,pw:await hash(p),photo:null,created:Date.now()};
+  db.users.push(u);
+  db.subjects.push({id:uid(),userId:u.id,name:'Desarrollo de Aplicaciones',cat:'Principal',icon:'💻'},{id:uid(),userId:u.id,name:'Algoritmos y Estructuras',cat:'Especializada',icon:'🧩'});
+  db.session=u.id;save();boot();
+};
+$('#bl').onclick=async()=>{
+  const q=$('#lu').value.trim().toLowerCase(),h=await hash($('#lp').value);
+  const u=db.users.find(u=>(u.code.toLowerCase()===q||u.name.toLowerCase()===q)&&u.pw===h);
+  if(!u)return $('#ae').textContent='Usuario o contraseña incorrectos.';
+  db.session=u.id;save();boot();
+};
+['lu','lp'].forEach(i=>$('#'+i).addEventListener('keydown',e=>e.key==='Enter'&&$('#bl').click()));
+$('#lo').onclick=()=>{modal(`<h2>¿Cerrar sesión?</h2><p class="cap">Tus trabajos y semanas quedan guardados.</p><div class="acts"><button class="btn ghost" onclick="closeM()">Cancelar</button><button class="btn dg" id="ok" style="padding:11px 18px;border-radius:12px">Salir</button></div>`);
+  $('#ok').onclick=()=>{db.session=null;save();closeM();boot()}};
+
+function boot(){
+  paintLogo();const u=me();
+  $('#auth').classList.toggle('hide',!!u);$('#app').classList.toggle('hide',!u);
+  if(!u)return;
+  $('#hav').innerHTML=avatar(u);$('#hn').textContent=u.name;
+  $('#hb').textContent=`${u.code} • ${u.career} (${u.cycle.replace(' Ciclo','')} Ciclo)`;
+  const subs=db.subjects.filter(s=>s.userId===u.id);
+  if(!subs.find(s=>s.id===st.sub))st={sub:subs[0]?.id,unit:'all',week:'all'};
+  render();
+}
+
+// ====== Render principal ======
+function render(){
+  const u=me(),subs=db.subjects.filter(s=>s.userId===u.id);
+  $('#subs').innerHTML=subs.map(s=>`<button class="sub${s.id===st.sub?' on':''}" data-s="${s.id}"><div class="ic">${s.icon}</div><div><b style="font-size:18px">${esc(s.name)}</b><div class="cap">Asignatura ${s.cat}</div></div><div class="cnt">${db.evidences.filter(e=>e.subjectId===s.id).length}</div></button>`).join('');
+  $('#subs').onclick=e=>{const b=e.target.closest('[data-s]');if(b){st={sub:b.dataset.s,unit:'all',week:'all'};render()}};
+  $('#units').innerHTML=['all',1,2,3,4].map(x=>`<button class="${st.unit==x?'on':''}" data-u="${x}">${x==='all'?'Todas':'Unidad '+x}</button>`).join('');
+  $('#units').onclick=e=>{const b=e.target.closest('[data-u]');if(b){st.unit=b.dataset.u==='all'?'all':+b.dataset.u;st.week='all';render()}};
+  renderWeeks();renderEv();
+}
+const weeksOf=(sub,unit)=>db.weeks.filter(w=>w.userId===me().id&&w.subjectId===sub&&w.unit==unit);
+function renderWeeks(){
+  const el=$('#wk');
+  if(st.unit==='all'){el.innerHTML='<p class="cap" style="margin-top:14px">Elige una unidad para ver, crear o filtrar sus semanas.</p>';return}
+  const ws=weeksOf(st.sub,st.unit),cur=ws.find(w=>w.id===st.week);
+  el.innerHTML=`<div class="weeks"><button class="chip${st.week==='all'?' on':''}" data-w="all">Todas las semanas</button>${ws.map(w=>`<button class="chip${w.id===st.week?' on':''}" data-w="${w.id}">${esc(w.name)}</button>`).join('')}<button class="btn sm" id="aw">+ Agregar semana</button></div>
+  ${cur?`<div class="wtools"><span class="cap">${esc(cur.topic||'Sin tema definido')}</span><button class="btn ghost sm" id="ew">Editar</button><button class="btn dg sm" id="dw" style="border-radius:9px">Eliminar</button></div>`:''}`;
+  el.onclick=e=>{const b=e.target.closest('[data-w]');if(b){st.week=b.dataset.w;render()}};
+  $('#aw').onclick=()=>weekModal();
+  if(cur){$('#ew').onclick=()=>weekModal(cur);$('#dw').onclick=()=>delWeek(cur)}
+}
+function weekModal(w){
+  modal(`<h2>${w?'Editar semana':'Crear nueva semana'}</h2><p class="cap">Unidad ${st.unit}</p>
+  <label>Número o nombre de la semana</label><input class="inp" id="wn" placeholder="Ej: Semana 1, Semana evaluación parcial" value="${esc(w?.name)}">
+  <label>Descripción o tema principal (opcional)</label><input class="inp" id="wt" value="${esc(w?.topic)}">
+  <div class="acts"><button class="btn ghost" onclick="closeM()">Cancelar</button><button class="btn" id="ws">Guardar semana</button></div>`);
+  $('#ws').onclick=()=>{const n=$('#wn').value.trim();if(!n)return toast('Escribe el nombre de la semana');
+    if(w){w.name=n;w.topic=$('#wt').value.trim()}else{const nw={id:uid(),userId:me().id,subjectId:st.sub,unit:st.unit,name:n,topic:$('#wt').value.trim(),created:Date.now()};db.weeks.push(nw);st.week=nw.id}
+    save();closeM();render();toast('Semana guardada')};
+}
+function delWeek(w){
+  const n=db.evidences.filter(e=>e.weekId===w.id).length;
+  modal(`<h2>Eliminar "${esc(w.name)}"</h2><p class="cap">${n?`Esta semana tiene ${n} evidencia(s) cargada(s). Se eliminarán junto con la semana.`:'Esta semana no tiene evidencias.'}</p><div class="acts"><button class="btn ghost" onclick="closeM()">Cancelar</button><button class="btn dg" id="ok" style="padding:11px 18px;border-radius:12px">Eliminar</button></div>`);
+  $('#ok').onclick=()=>{db.evidences=db.evidences.filter(e=>e.weekId!==w.id);db.weeks=db.weeks.filter(x=>x.id!==w.id);st.week='all';save();closeM();render();toast('Semana eliminada')};
+}
+function renderEv(){
+  let l=db.evidences.filter(e=>e.userId===me().id&&e.subjectId===st.sub);
+  if(st.unit!=='all')l=l.filter(e=>e.unit==st.unit);
+  if(st.week!=='all')l=l.filter(e=>e.weekId===st.week);
+  l.sort((a,b)=>b.created-a.created);
+  if(!l.length){$('#ev').innerHTML=`<div class="empty"><div class="ic">📂</div><b style="font-size:18px">No hay trabajos registrados</b><p class="cap" style="margin-top:6px">No se encontraron entregas en esta selección. Usa "Subir trabajo" para añadir una.</p></div>`;return}
+  $('#ev').innerHTML='<div class="list">'+l.map(e=>{const w=db.weeks.find(x=>x.id===e.weekId);
+    return `<article class="ev"><span class="tag">Unidad ${e.unit}</span><span class="tag">${esc(w?.name||'—')}</span><span class="tag">${esc(e.type)}</span>
+    <h3>${esc(e.title)}</h3><p class="cap">${esc(e.desc)}</p>${e.code?`<pre>${esc(e.code)}</pre>`:''}
+    <div class="row" style="margin-top:12px"><span class="cap">${new Date(e.created).toLocaleDateString('es-PE')}</span>
+    ${e.url?`<a class="btn ghost sm" href="${esc(e.url)}" target="_blank" rel="noopener">Abrir enlace</a>`:''}
+    ${e.code||e.data?`<button class="btn ghost sm" data-dl="${e.id}">Descargar</button>`:''}
+    <button class="btn dg sm" data-rm="${e.id}" style="border-radius:9px;margin-left:auto">Eliminar</button></div></article>`}).join('')+'</div>';
+}
+$('#ev').onclick=e=>{
+  const d=e.target.dataset.dl,r=e.target.dataset.rm;
+  if(d){const x=db.evidences.find(v=>v.id===d),a=document.createElement('a');
+    if(x.code){a.href=URL.createObjectURL(new Blob([x.code],{type:'text/plain'}));a.download=(x.title.replace(/\W+/g,'_')||'Principal')+'.java'}else{a.href=x.data;a.download=x.fileName}a.click()}
+  if(r&&confirm('¿Eliminar esta evidencia?')){db.evidences=db.evidences.filter(v=>v.id!==r);save();render()}
+};
+
+// ====== Subir trabajo ======
+$('#up').onclick=()=>{
+  const u=me(),subs=db.subjects.filter(s=>s.userId===u.id),unit=st.unit==='all'?1:st.unit;
+  modal(`<h2>Subir trabajo académico</h2>
+  <label>Título del trabajo / actividad</label><input class="inp" id="ut" placeholder="Ej: Guía práctica 01 - Matriz de adyacencia">
+  <div class="g2"><div><label>Curso destino</label><select class="inp" id="us">${opts(subs.map(s=>[s.id,s.name]),st.sub)}</select></div>
+  <div><label>Unidad académica</label><select class="inp" id="uu">${opts([1,2,3,4].map(n=>[n,'Unidad '+n]),unit)}</select></div></div>
+  <label>Semana</label><div class="row"><select class="inp" id="uw" style="margin-top:0"></select><button class="btn ghost sm" id="nw" type="button" style="white-space:nowrap">+ Nueva</button></div>
+  <label>Tipo de documento</label><select class="inp" id="ux">${opts(['Código Java (.java)','Documento PDF (.pdf)','Documento Word (.docx)','Archivo ZIP (.zip)','Imagen','Enlace (GitHub / Drive)'].map(x=>[x,x]))}</select>
+  <label>Descripción / notas</label><textarea class="inp" id="ud" rows="2" placeholder="Resumen de la actividad solicitada por el docente..."></textarea>
+  <div id="uc"></div>
+  <div class="acts"><button class="btn ghost" onclick="closeM()">Cancelar</button><button class="btn" id="usv">Guardar trabajo</button></div>`);
+  const fillW=(sel)=>{const ws=weeksOf($('#us').value,$('#uu').value);$('#uw').innerHTML=ws.length?opts(ws.map(w=>[w.id,w.name]),sel):'<option value="">Crea una semana primero</option>'};
+  const fillT=()=>{const t=$('#ux').value;$('#uc').innerHTML=t.startsWith('Código')?`<label>Código fuente Java</label><textarea class="inp" id="uj" rows="6" style="font-family:monospace;font-size:13px">public class Principal {\n    public static void main(String[] args) {\n        System.out.println("Hola UPLA");\n    }\n}</textarea>`
+    :t.startsWith('Enlace')?`<label>URL</label><input class="inp" id="ul" type="url" placeholder="https://github.com/usuario/repositorio">`
+    :`<label>Archivo (máx. 2 MB)</label><input class="inp" id="uf" type="file">`};
+  fillW(st.week);fillT();
+  $('#us').onchange=$('#uu').onchange=()=>fillW();$('#ux').onchange=fillT;
+  $('#nw').onclick=()=>{st.sub=$('#us').value;st.unit=+$('#uu').value;st.week='all';weekModal()};
+  $('#usv').onclick=async()=>{
+    const title=$('#ut').value.trim(),wid=$('#uw').value,type=$('#ux').value;
+    if(!title)return toast('Escribe un título');
+    if(!wid)return toast('Selecciona o crea una semana: es obligatoria');
+    const ev={id:uid(),userId:u.id,subjectId:$('#us').value,unit:+$('#uu').value,weekId:wid,title,desc:$('#ud').value.trim(),type,created:Date.now()};
+    if(type.startsWith('Código'))ev.code=$('#uj').value;
+    else if(type.startsWith('Enlace')){ev.url=$('#ul').value.trim();if(!/^https?:\/\//.test(ev.url))return toast('Ingresa una URL válida (https://…)')}
+    else{const f=$('#uf').files[0];if(!f)return toast('Selecciona un archivo');if(f.size>2e6)return toast('El archivo supera 2 MB');
+      ev.fileName=Date.now()+'_'+f.name;ev.data=await new Promise(r=>{const x=new FileReader;x.onload=()=>r(x.result);x.readAsDataURL(f)})}
+    db.evidences.push(ev);if(!save()){db.evidences.pop();return}
+    st={sub:ev.subjectId,unit:ev.unit,week:ev.weekId};closeM();render();toast('Trabajo guardado')};
+};
+
+// ====== Editar perfil (avatar con recorte circular) ======
+$('#ep').onclick=()=>{
+  const u=me();let img=null,photo=u.photo,logo=db.logo;
+  modal(`<h2>Editar perfil</h2>
+  <canvas id="pv" width="256" height="256"></canvas>
+  <div class="row" style="justify-content:center"><label class="btn ghost sm" style="margin:0;cursor:pointer">Cambiar foto<input id="pf" type="file" accept="image/jpeg,image/png,image/webp" class="hide"></label><button class="btn dg sm" id="pd" style="border-radius:9px">Eliminar foto</button></div>
+  <div id="cr" class="hide"><label>Zoom</label><input type="range" id="cz" min="1" max="3" step=".05" value="1"><label>Ajuste horizontal</label><input type="range" id="cx" min="-1" max="1" step=".02" value="0"><label>Ajuste vertical</label><input type="range" id="cy" min="-1" max="1" step=".02" value="0"></div>
+  <label>Nombre completo</label><input class="inp" id="pn" value="${esc(u.name)}">
+  <div class="g2"><div><label>Código de estudiante</label><input class="inp" value="${esc(u.code)}" disabled></div><div><label>Ciclo académico</label><select class="inp" id="py">${opts(CYC.map(c=>[c,c]),u.cycle)}</select></div></div>
+  <label>Carrera universitaria</label><input class="inp" id="pk" value="${esc(u.career)}">
+  <label>Logo institucional (SVG/PNG con fondo transparente)</label><div class="row"><input class="inp" id="pl" type="file" accept="image/svg+xml,image/png" style="margin-top:0"><button class="btn ghost sm" id="pr" type="button">Restaurar</button></div>
+  <details style="margin-top:16px"><summary class="cap" style="cursor:pointer">Cambiar contraseña (opcional)</summary>
+  <label>Contraseña actual</label><input class="inp" id="w0" type="password"><label>Nueva contraseña</label><input class="inp" id="w1" type="password"><label>Confirmar nueva contraseña</label><input class="inp" id="w2" type="password"></details>
+  <div class="acts"><button class="btn ghost" onclick="closeM()">Cancelar</button><button class="btn" id="psv">Guardar cambios</button></div>`);
+  const cv=$('#pv'),cx=cv.getContext('2d');
+  const draw=()=>{cx.clearRect(0,0,256,256);cx.fillStyle='#0a1a20';cx.fillRect(0,0,256,256);
+    if(img){const z=+$('#cz').value,s=Math.min(img.width,img.height)/z,mx=img.width-s,my=img.height-s;
+      cx.drawImage(img,mx/2*(1+ +$('#cx').value),my/2*(1+ +$('#cy').value),s,s,0,0,256,256)}
+    else if(photo){const i=new Image;i.onload=()=>cx.drawImage(i,0,0,256,256);i.src=photo}
+    else{cx.fillStyle='#00E5FF';cx.font='800 96px Plus Jakarta Sans,sans-serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(initials(u.name),128,132)}};
+  draw();['cz','cx','cy'].forEach(i=>$('#'+i).oninput=draw);
+  $('#pf').onchange=e=>{const f=e.target.files[0];if(!f)return;
+    if(!/^image\/(jpeg|png|webp)$/.test(f.type))return toast('Formato no permitido (JPG, PNG o WEBP)');
+    if(f.size>5e6)return toast('La imagen supera 5 MB');
+    const r=new FileReader;r.onload=()=>{const i=new Image;i.onload=()=>{img=i;$('#cr').classList.remove('hide');draw()};i.src=r.result};r.readAsDataURL(f)};
+  $('#pd').onclick=()=>{img=null;photo=null;$('#cr').classList.add('hide');draw()};
+  $('#pl').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>1e6)return toast('El logo supera 1 MB');const r=new FileReader;r.onload=()=>{logo=r.result;toast('Logo listo: guarda para aplicar')};r.readAsDataURL(f)};
+  $('#pr').onclick=()=>{logo=null;toast('Se restaurará el logo por defecto')};
+  $('#psv').onclick=async()=>{
+    const b=$('#psv');b.disabled=true;b.textContent='Guardando…';
+    const n=$('#pn').value.trim(),k=$('#pk').value.trim();
+    const fail=m=>{toast(m);b.disabled=false;b.textContent='Guardar cambios'};
+    if(!n||!k)return fail('Nombre y carrera son obligatorios');
+    if($('#w0').value||$('#w1').value||$('#w2').value){
+      if(await hash($('#w0').value)!==u.pw)return fail('La contraseña actual es incorrecta');
+      if($('#w1').value.length<6)return fail('La nueva contraseña necesita al menos 6 caracteres');
+      if($('#w1').value!==$('#w2').value)return fail('La confirmación no coincide');
+      u.pw=await hash($('#w1').value)}
+    u.name=n;u.career=k;u.cycle=$('#py').value;u.photo=img?cv.toDataURL('image/jpeg',.85):photo;db.logo=logo;
+    save();closeM();boot();toast('Perfil actualizado con éxito')};
+};
+
+boot();
+</script>
+</body>
+</html>
